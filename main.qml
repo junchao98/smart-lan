@@ -42,6 +42,20 @@ Window {
                 textEdit.append("home/")
             }
         }
+
+        Text {
+            id: text1
+            x: 204
+            y: 28
+            width: 174
+            height: 35
+            text: qsTr("OK")
+            anchors.verticalCenter: parent.verticalCenter
+            font.pixelSize: 20
+            horizontalAlignment: Text.AlignHCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.bold: true
+        }
     }
 
     TextEdit {
@@ -80,7 +94,7 @@ Window {
             height: 47
             onClicked: {
                     textEdit.clear()
-                    textEdit.append("home/fan0*on")
+                    textEdit.append("home/led0*switch")
             }
         }
     }
@@ -106,7 +120,7 @@ Window {
             height: 48
             onClicked: {
                 textEdit.clear()
-                textEdit.append("home/fan0*off")
+                textEdit.append("home/led0*sub")
             }
         }
     }
