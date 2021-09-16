@@ -14,10 +14,11 @@ public:
     Q_INVOKABLE void mqttpublish(QString str);
 private slots:
     void updateLogStateChange(void);
-
+    void mqttconnected_solt();
     void brokerDisconnected();
 signals:
-
+    void mqtt_cnted();
+    void mqtt_discnt();
 private:
     QMqttClient *m_client;
 };

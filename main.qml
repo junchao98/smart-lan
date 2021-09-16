@@ -11,13 +11,22 @@ Window {
 
     LusMqtt{
         id: mqtt
+        onMqtt_cnted: {
+            console.info("mqtt cnt")
+            rectangle_ok.color = "#6bb7fa"
+        }
+        onMqtt_discnt: {
+            rectangle_ok.color = "#9d9087"
+        }
 
     }
+
     Rectangle {
-        id: rectangle
+        id: rectangle_ok
         y: 288
         height: 138
-        color: "#6bb7fa"
+        color: "#9d9087"
+        //color: "#6bb7fa"
         radius: 10
         anchors.left: parent.left
         anchors.right: parent.right
@@ -44,7 +53,7 @@ Window {
         }
 
         Text {
-            id: text1
+            id: text_ok
             x: 204
             y: 28
             width: 174
@@ -57,6 +66,7 @@ Window {
             font.bold: true
         }
     }
+
 
     TextEdit {
         id: textEdit
@@ -81,8 +91,8 @@ Window {
         height: 50
         color: "#6bb7fa"
         radius: 10
-        anchors.left: rectangle.left
-        anchors.bottom: rectangle.top
+        anchors.left: rectangle_ok.left
+        anchors.bottom: rectangle_ok.top
         anchors.bottomMargin: 30
         anchors.leftMargin: 0
 
@@ -107,8 +117,8 @@ Window {
         height: 50
         color: "#6bb7fa"
         radius: 10
-        anchors.right: rectangle.right
-        anchors.bottom: rectangle.top
+        anchors.right: rectangle_ok.right
+        anchors.bottom: rectangle_ok.top
         anchors.bottomMargin: 30
         anchors.rightMargin: 0
 

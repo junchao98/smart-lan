@@ -12,6 +12,7 @@ LusMqtt::LusMqtt()
 
     connect(m_client, SIGNAL(stateChanged(ClientState)), this, SLOT(updateLogStateChange(void)));
     connect(m_client, SIGNAL(disconnected()), this, SLOT(brokerDisconnected()));
+    connect(m_client, SIGNAL(connected()), this, SLOT(mqttconnected_solt()));
 
     connect(m_client, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
         const QString content = QDateTime::currentDateTime().toString()
@@ -43,6 +44,10 @@ void LusMqtt::mqttpublish(QString str)
 {
     QStringList list_str = str.split("*");
 
+    if(str.isEmpty()){
+        return;
+    }
+
     QString topic = list_str.at(0);
     QByteArray msg = list_str.at(1).toLatin1();
     m_client->publish(topic, msg, 0);
@@ -67,5 +72,11 @@ void LusMqtt::updateLogStateChange(void)
 
 void LusMqtt::brokerDisconnected()
 {
+    emit mqtt_discnt();
     qDebug()<<"broker disconnected";
+}
+
+void LusMqtt::mqttconnected_solt()
+{
+    emit mqtt_cnted();
 }
